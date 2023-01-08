@@ -1,0 +1,51 @@
+package learning.selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TC_PIM_03 {
+	
+	public static void main(String[] args) throws InterruptedException {
+		
+		System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		driver.manage().window().maximize();
+		Thread.sleep(3000);
+		
+		WebElement userName = driver.findElement(By.xpath("//form[@class='oxd-form']/div[1]/div/div[2]/input"));
+		userName.sendKeys("admin");
+		WebElement password= driver.findElement(By.xpath("//form[@class='oxd-form']/div[2]/div/div[2]/input"));
+		password.sendKeys("admin123");
+		WebElement login= driver.findElement(By.xpath("//form[@class='oxd-form']/div[3]/button"));
+		login.click();
+		Thread.sleep(3000);
+		
+		WebElement pim = driver.findElement(By.xpath("//span[text()='PIM']"));
+		pim.click();
+		Thread.sleep(3000);
+		WebElement add= driver.findElement(By.xpath("//div[@class='orangehrm-paper-container']/div/button"));
+		add.click();
+		Thread.sleep(3000);
+		WebElement firstName= driver.findElement(By.xpath("//div[@class='--name-grouped-field']/div[1]/div[2]/input"));
+		firstName.sendKeys("Ram");
+		WebElement middleName= driver.findElement(By.xpath("//div[@class='--name-grouped-field']/div[2]/div[2]/input"));
+		middleName.sendKeys("xcd");
+		WebElement lastName= driver.findElement(By.xpath("//div[@class='--name-grouped-field']/div[3]/div[2]/input"));
+		lastName.sendKeys("xcd");
+		
+		driver.findElement(By.xpath("//div[@class='oxd-switch-wrapper']/label/input")).click();
+		WebElement username = driver.findElement(By.xpath("//div[@class='oxd-form-row'][2]/div/div/div[1]/div[2]"));
+		username.sendKeys("abcdef");
+		WebElement password1 = driver.findElement(By.xpath("//div[contains(@class,'oxd-form-row')][4]/div/div[1]/div/div[2]"));
+		password1.sendKeys("Zaqwsx@1995");
+		WebElement confirmPassword = driver.findElement(By.xpath("//div[contains(@class,'oxd-form-row')][4]/div/div[2]/div/div[2]"));
+		confirmPassword.sendKeys("Zaqwsx@1995");
+		driver.findElement(By.xpath("//div[@class='oxd-form-actions']/button[2]")).click();
+		Thread.sleep(5000);		
+		
+	}
+
+}
