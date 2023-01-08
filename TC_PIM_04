@@ -1,0 +1,54 @@
+package learning.selenium;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TC_PIM_4 {
+	
+public static void main(String[] args) throws InterruptedException {
+		
+		System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		driver.manage().window().maximize();
+		Thread.sleep(3000);
+		WebElement userName = driver.findElement(By.xpath("//form[@class='oxd-form']/div[1]/div/div[2]/input"));
+		userName.sendKeys("admin");
+		WebElement password= driver.findElement(By.xpath("//form[@class='oxd-form']/div[2]/div/div[2]/input"));
+		password.sendKeys("admin123");
+		WebElement login= driver.findElement(By.xpath("//form[@class='oxd-form']/div[3]/button"));
+		login.click();
+		WebElement pim = driver.findElement(By.xpath("//span[text()='PIM']"));
+		pim.click();
+		Thread.sleep(3000);
+		
+		WebElement employeeList = driver.findElement(By.xpath("//a[text()='Employee List']"));
+		employeeList.click();
+		WebElement edit = driver.findElement(By.xpath("//div[@class='oxd-table-body']/div[1]/div/div[2]"));
+		edit.click();
+		Thread.sleep(3000);
+		String[] expected = {"Personal Details", "Contact Details", "Emergency Contacts", "Dependents", "Immigration", "Job", 
+				"Salary", "Tax Exemptions", "Report-to", "Qualifications", "Memberships"};
+		
+		List<WebElement> option = driver.findElements(By.xpath("//div[@class='orangehrm-tabs']"));
+		if (expected.length != option.size()) {
+		    System.out.println("Elements not matching");
+		}
+		
+		for (int i = 0; i < expected.length; i++) {
+		    String optionValue = option.get(i).getText();
+		    if (optionValue.equals(expected[i])) {
+		        System.out.println("Matching Options " + optionValue);
+		    } else {
+		        System.out.println("failed on: " + optionValue);
+		    }
+		}
+		
+		
+}
+
+}
