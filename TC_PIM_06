@@ -1,0 +1,56 @@
+package learning.selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TC_PIM_6 {
+	
+	public static void main(String[] args) throws InterruptedException {
+		
+		System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		driver.manage().window().maximize();
+		Thread.sleep(3000);
+		WebElement userName = driver.findElement(By.xpath("//form[@class='oxd-form']/div[1]/div/div[2]/input"));
+		userName.sendKeys("admin");
+		WebElement password= driver.findElement(By.xpath("//form[@class='oxd-form']/div[2]/div/div[2]/input"));
+		password.sendKeys("admin123");
+		WebElement login= driver.findElement(By.xpath("//form[@class='oxd-form']/div[3]/button"));
+		login.click();
+		WebElement pim = driver.findElement(By.xpath("//span[text()='PIM']"));
+		pim.click();
+		Thread.sleep(3000);
+		
+		WebElement employeeList = driver.findElement(By.xpath("//div[@class='oxd-topbar-body']/nav/ul/li[2]"));
+		employeeList.click();
+		WebElement edit = driver.findElement(By.xpath("//div[@class='oxd-table-body']/div[1]/div/div[2]"));
+		edit.click();
+		Thread.sleep(3000);
+		WebElement contactDetails = driver.findElement(By.xpath("//div[@class='orangehrm-tabs']/div[2]"));
+		contactDetails.click();
+		WebElement street1 = driver.findElement(By.xpath("//div[@class='oxd-form-row'][1]/div/div[1]/div/div[2]"));
+		street1.sendKeys("Pune");
+		WebElement street2 = driver.findElement(By.xpath("//div[@class='oxd-form-row'][1]/div/div[2]/div/div[2]"));
+		street2.sendKeys("qwer");
+		WebElement city = driver.findElement(By.xpath("//div[@class='oxd-form-row'][1]/div/div[3]/div/div[2]"));
+		city.sendKeys("asdf");
+		WebElement home = driver.findElement(By.xpath("//div[@class='oxd-form-row'][2]/div/div[1]/div/div[2]"));
+		home.sendKeys("home");
+		WebElement mobile = driver.findElement(By.xpath("//div[@class='oxd-form-row'][2]/div/div[2]/div/div[2]"));
+		mobile.sendKeys("2345678901");
+		WebElement work = driver.findElement(By.xpath("//div[@class='oxd-form-row'][2]/div/div[3]/div/div[2]"));
+		work.sendKeys("work");
+		WebElement email = driver.findElement(By.xpath("//div[@class='oxd-form-row'][3]/div/div[1]/div/div[2]"));
+		email.sendKeys("namial@gmail.com");
+		WebElement otherEmail = driver.findElement(By.xpath("//div[@class='oxd-form-row'][3]/div/div[2]/div/div[2]"));
+		otherEmail.sendKeys("nomail@gmail.com");
+		driver.findElement(By.xpath("//div[@class='oxd-form-actions']/button")).click();
+		
+		
+		
+	}
+
+}
