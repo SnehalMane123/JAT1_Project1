@@ -1,0 +1,61 @@
+package learning.selenium;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class TC_PIM_02 {
+	
+	public static void main(String[] args) throws InterruptedException {
+			
+			System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_win32\\chromedriver.exe");
+			WebDriver driver = new ChromeDriver();
+			driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+			driver.manage().window().maximize();
+			Thread.sleep(3000);
+			
+			WebElement userName = driver.findElement(By.xpath("//form[@class='oxd-form']/div[1]/div/div[2]/input"));
+			userName.sendKeys("admin");
+			WebElement password= driver.findElement(By.xpath("//form[@class='oxd-form']/div[2]/div/div[2]/input"));
+			password.sendKeys("admin123");
+			WebElement login= driver.findElement(By.xpath("//form[@class='oxd-form']/div[3]/button"));
+			login.click();
+			Thread.sleep(3000);
+			
+			
+			WebElement pim = driver.findElement(By.xpath("//span[text()='Admin']"));
+			pim.click();
+			Thread.sleep(3000);
+			WebElement userMan = driver.findElement(By.xpath("//div[@class='oxd-topbar-body']/nav/ul/li[1]/span"));
+			userMan.click();
+			WebElement user = driver.findElement(By.xpath("//ul[@class='oxd-dropdown-menu']/li/a"));
+			user.click();
+			Select select = new Select(driver.findElement(By.xpath("//div[@class='oxd-select-wrapper']/div/div[2]/i[1]")));
+			List<WebElement> dropdown = select.getOptions();
+			for (int i = 0; i <dropdown.size(); i++) {
+			    String optionValue = dropdown.get(i).getText();
+			    System.out.println(optionValue);
+			}
+			Thread.sleep(2000);
+			
+			Select select1 = new Select(driver.findElement(By.xpath("//div[@class='oxd-select-wrapper']/div/div[2]/i[21]")));
+			List<WebElement> dropdown1 = select1.getOptions();
+			for (int i = 0; i <dropdown1.size(); i++) {
+			    String optionValue1 = dropdown1.get(i).getText();
+			    System.out.println(optionValue1);
+			}
+			Thread.sleep(2000);
+			
+			    
+			
+			
+			
+			    
+	
+	}
+
+}
